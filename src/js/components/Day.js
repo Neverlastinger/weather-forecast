@@ -1,11 +1,9 @@
 import React from 'react';
 
-const Day = props => (
+const Day = ({ data }) => (
 	<li>
-		<div className="header">Friday</div>
-		<div class="content">
-			26° C
-		</div>
+		<div className="header">{data.day}</div>
+		<div className="content">{data.temperature}° C</div>
 	</li>
 );
 

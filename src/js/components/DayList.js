@@ -1,15 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Day from './Day';
 
-const DayList = props => (
+let DayList = ({ days }) => (
 	<ul>
-		<Day />
-		<Day />
-		<Day />
-		<Day />
-		<Day />
+		{days.map((day, i) => (
+			<Day data={day} key={i} />
+		))}
 	</ul>
 );
 
-export default DayList;
+export default connect(
+	(state) => ({
+		days: state.forecast.days
+	}),
+	null
+)(DayList);
