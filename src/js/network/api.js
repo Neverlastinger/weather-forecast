@@ -2,7 +2,7 @@
 // Network functionality. Uses Fetch API.
 // *************************
 
-const _url = 'http://api.openweathermap.org/data/2.5/';
+const _url = 'https://api.openweathermap.org/data/2.5/';
 const appId = '7d55c4d6a93e6feeca80fb7e60445421';
 
 const api = {
