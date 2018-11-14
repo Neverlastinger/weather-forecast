@@ -2,10 +2,10 @@
 // Forecast Reducer
 // ************************************
 
-import { SET_FORECAST, SWITCH_TO_DAY } from '../actions/actionTypes';
+import { SET_FORECAST, SWITCH_TO_DAY, SWITCH_TO_FULL_FORECAST } from '../actions/actionTypes';
 
 const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const forecastDays = 5;
+const numberOfDays = 5;
 const forecastsPerDay = 8;
 
 const initialState = {
@@ -28,11 +28,7 @@ const forecast = (state = initialState, action) => {
 			return {
 				...state,
 				city: action.data.city.name,
-				days: Array.from(Array(forecastDays).keys()).map((dayOffset) => ({
-					temperature: getTemperature(dayOffset, action.data),
-					dayName: getDay(dayOffset, action.data),
-					dayOffset
-				})),
+				days: getDayListData(action.data),
 				_coreData: action.data
 			}
 			
@@ -48,10 +44,32 @@ const forecast = (state = initialState, action) => {
 				dayDetails: getDayDetails(action.day.dayName, state._coreData)
 			}
 			
+		case SWITCH_TO_FULL_FORECAST: 
+		
+			return {
+				...state,
+				dayDetails: null,
+				days: getDayListData(state._coreData)
+			}
+			
 		default:
 			return state;
 	}
 }
+
+/**
+ * Returns forecast data for each day by the given full openweathermap api data.
+ * 
+ * @param  {Object} data: openweathermap api data
+ * @return {Array} result: formatted array with necessary data
+ */
+const getDayListData = (data) => (
+	Array.from(Array(numberOfDays).keys()).map((dayOffset) => ({
+		temperature: getTemperature(dayOffset, data),
+		dayName: getDay(dayOffset, data),
+		dayOffset
+	}))
+);
 
 /**
  * Returns temperature for a given day based on the data received from the openweathermap api.

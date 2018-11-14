@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import BackButton from '../containers/BackButton';
 import CityInput from './CityInput';
 import DayList from '../containers/DayList';
 import Message from '../containers/Message';
@@ -28,7 +29,10 @@ export default class App extends Component {
 
 	render = () => (
 		<div className="container">
-			<CityInput />
+			{this.props.isSingleDay ?
+				<BackButton /> :
+				<CityInput />
+			}
 			<Message />
 			<DayList />
 		</div>
