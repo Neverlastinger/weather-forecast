@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import exampleApiResponse from './exampleApiResponse';
 import forecast from '../js/store/reducers/forecast';
 import { setForecast, switchToDay } from '../js/store/actions/actions';
