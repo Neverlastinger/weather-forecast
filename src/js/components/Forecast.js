@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DayList from './DayList';
+import DayList from '../containers/DayList';
 
 const Forecast = props => (
 	<DayList />

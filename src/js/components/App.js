@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import CityInput from './CityInput';
 import Forecast from './Forecast';
-import Message from './Message';
-import { fetchForecastByCoords } from '../store/actions/actions';
+import Message from '../containers/Message';
 
-class App extends Component {
+export default class App extends Component {
 
 	componentDidMount() {
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -30,11 +28,3 @@ class App extends Component {
 		);
 	}
 }
-
-
-export default connect(
-	null,
-	(dispatch) => ({
-		onGeolocationRetrieved: (data) => dispatch(fetchForecastByCoords(data))
-	})
-)(App);

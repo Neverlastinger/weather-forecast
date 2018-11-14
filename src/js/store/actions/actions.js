@@ -1,3 +1,7 @@
+// **************************************
+// This file contains all action creators
+// **************************************
+
 import { REQUEST_FORECAST_BY_COORDS, SET_FORECAST } from './actionTypes';
 import api from '../../network/api';
 

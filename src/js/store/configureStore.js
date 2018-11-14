@@ -1,3 +1,8 @@
+// ************************************
+// This file configures the Redux Store
+// https://redux.js.org/api/store
+// ************************************
+
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
