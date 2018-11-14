@@ -15,9 +15,9 @@ export const fetchForecastByCoords = (data) => (dispatch) => {
 	
 	dispatch(setLoading());
 	
-    return api.getForecastByCoords(data).then((response) => {
+	return api.getForecastByCoords(data).then((response) => {
 		dispatch(setForecast(response));
-    }).catch((err) => {
+	}).catch((err) => {
 		dispatch(removeLoading());
 		alert(`Error fetching data by coordinates`);
 	})
@@ -27,9 +27,9 @@ export const fetchForecastByCity = (city) => (dispatch) => {
 	
 	dispatch(setLoading());
 	
-    return api.getForecastByCity(city).then((response) => {
+	return api.getForecastByCity(city).then((response) => {
 		dispatch(setForecast(response));
-    }).catch((err) => {
+	}).catch((err) => {
 		dispatch(removeLoading());
 		alert(`Error fetching data for ${city} city`);
 	})

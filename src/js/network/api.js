@@ -9,7 +9,7 @@ const appId = '7d55c4d6a93e6feeca80fb7e60445421';
  * Sends a fetch request. 
  * 
  * @param  {String} action: url plug
- * @param  {[type]} data: GET params
+ * @param  {Object} data: GET params
  */
 const request = ({ action, data }) => {
 	
@@ -36,7 +36,7 @@ const request = ({ action, data }) => {
  * An object containing all Network methods. 
  */
 const api = {
-    getForecastByCoords: (params) => ( 
+	getForecastByCoords: (params) => ( 
 		request({ 
 			action: 'forecast', 
 			data: { 
