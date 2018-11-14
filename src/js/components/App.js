@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import BackButton from '../containers/BackButton';
-import CityInput from './CityInput';
+import CityInput from '../containers/CityInput';
 import DayList from '../containers/DayList';
 import Message from '../containers/Message';
 

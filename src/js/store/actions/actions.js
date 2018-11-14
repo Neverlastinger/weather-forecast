@@ -11,7 +11,12 @@ export const switchToFullForecast = () => ({ type: SWITCH_TO_FULL_FORECAST });
 
 export const fetchForecastByCoords = (data) => (dispatch) => {
     return api.getForecastByCoords(data).then((response) => {
-		console.error(response);
+		dispatch(setForecast(response));
+    });
+};
+
+export const fetchForecastByCity = (city) => (dispatch) => {
+    return api.getForecastByCity(city).then((response) => {
 		dispatch(setForecast(response));
     });
 };
