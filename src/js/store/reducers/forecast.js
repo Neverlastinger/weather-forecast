@@ -14,7 +14,7 @@ const initialState = {
 }
 
 /**
- * Forecast Reducer. Handles state changes related to the 5 day forecast. 
+ * Forecast Reducer. Handles state changes related to the 5 day forecast or a single day forecast. 
  * 
  * @param  {Object} state: previous state
  * @param  {Object} action: action to be performed

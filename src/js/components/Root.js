@@ -7,7 +7,7 @@ import App from '../containers/App';
 const store = configureStore();
 
 /**
- * Redux Root component. This is where application kicks in.
+ * Root component. This is where application kicks in.
  * Provides the Redux store to the application. 
  */
 const Root = () => (
