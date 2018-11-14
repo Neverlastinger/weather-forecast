@@ -161,3 +161,31 @@ ul, li {
 		}
 	}
 }
+
+@media (max-width: 800px) {
+	
+	#root {
+		.container {
+			.message {
+				font-size: 20px;
+			}
+			> ul {
+				flex-wrap: wrap;
+
+				> li {
+					margin: 0;
+					height: 50%;
+					border-right: 1px solid black;
+					
+					&:only-child {
+						height: 100%;
+					}
+					
+					.content {
+						font-size: 30px;
+					}
+				}
+			}
+		}
+	}
+}

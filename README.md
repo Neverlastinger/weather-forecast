@@ -30,3 +30,4 @@ The application is built with ```create-react-app```, uses ```redux``` and ```re
 - Add additional forecast data beyond temperature - clouds, wind, etc.
 - Implement the browser's back button to navigate between a single day and the list of days.
 - Handle the variety of timezone issues that may occur. 
+- Implement better responsive design. 
