@@ -171,11 +171,12 @@ ul, li {
 			}
 			> ul {
 				flex-wrap: wrap;
+				justify-content: center;
 
 				> li {
 					margin: 0;
-					height: 50%;
 					border-right: 1px solid black;
+					height: auto;
 					
 					&:only-child {
 						height: 100%;
