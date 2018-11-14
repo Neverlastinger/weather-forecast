@@ -4,6 +4,7 @@ import BackButton from '../containers/BackButton';
 import CityInput from '../containers/CityInput';
 import DayList from '../containers/DayList';
 import Message from '../containers/Message';
+import Loading from './Loading';
 
 /**
  * Main components for the Forecast Weather App. 
@@ -29,10 +30,8 @@ export default class App extends Component {
 
 	render = () => (
 		<div className="container">
-			{this.props.isSingleDay ?
-				<BackButton /> :
-				<CityInput />
-			}
+			{ this.props.isLoading ? <Loading /> : null }
+			{ this.props.isSingleDay ? <BackButton /> : <CityInput /> }
 			<Message />
 			<DayList />
 		</div>

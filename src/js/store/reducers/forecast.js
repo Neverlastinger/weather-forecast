@@ -2,7 +2,7 @@
 // Forecast Reducer
 // ************************************
 
-import { SET_FORECAST, SWITCH_TO_DAY, SWITCH_TO_FULL_FORECAST } from '../actions/actionTypes';
+import { SET_FORECAST, SWITCH_TO_DAY, SWITCH_TO_FULL_FORECAST, SET_LOADING, REMOVE_LOADING } from '../actions/actionTypes';
 
 const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const numberOfDays = 5;
@@ -30,6 +30,7 @@ const forecast = (state = initialState, action) => {
 				...state,
 				city: action.data.city.name,
 				days: getDayListData(action.data),
+				loading: false,
 				_coreData: action.data
 			}
 			
@@ -50,7 +51,22 @@ const forecast = (state = initialState, action) => {
 			return {
 				...state,
 				dayDetails: null,
-				days: getDayListData(state._coreData)
+				days: getDayListData(state._coreData),
+				loading: false
+			}
+			
+		case SET_LOADING:
+		
+			return {
+				...state,
+				loading: true
+			}
+			
+		case REMOVE_LOADING:
+		
+			return {
+				...state,
+				loading: false
 			}
 			
 		default:
