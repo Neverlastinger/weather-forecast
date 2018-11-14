@@ -10,9 +10,8 @@ const appId = '7d55c4d6a93e6feeca80fb7e60445421';
  */
 const api = {
     getForecastByCoords: (params) => {
-
-		var url = new URL(`${_url}forecast`)
-		var params = { lat: 42.6977, lon: 23.3219, appid: appId };
+		var url = new URL(`${_url}forecast`);
+		var params = { lat: params.lat, lon: params.lon, appid: appId, units: 'metric' };
 		url.search = new URLSearchParams(params)
 
 		return fetch(url).then(function (response) {

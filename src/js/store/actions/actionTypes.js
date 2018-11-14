@@ -2,5 +2,5 @@
 // This file contains all action types
 // ************************************
 
-export const REQUEST_FORECAST_BY_COORDS = 'REQUEST_FORECAST_BY_COORDS';
 export const SET_FORECAST = 'SET_FORECAST';
+export const SWITCH_TO_DAY = 'SWITCH_TO_DAY';

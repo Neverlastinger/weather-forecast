@@ -2,7 +2,7 @@
 // Forecast Reducer
 // ************************************
 
-import { SET_FORECAST } from '../actions/actionTypes';
+import { SET_FORECAST, SWITCH_TO_DAY } from '../actions/actionTypes';
 
 const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const forecastDays = 5;
@@ -24,28 +24,34 @@ const forecast = (state = initialState, action) => {
 	switch (action.type) {
 
 		case SET_FORECAST:
+		
 			return {
 				...state,
 				city: action.data.city.name,
 				days: Array.from(Array(forecastDays).keys()).map((dayOffset) => ({
 					temperature: getTemperature(dayOffset, action.data),
-					day: getDay(dayOffset, action.data)
-				}))
+					dayName: getDay(dayOffset, action.data),
+					dayOffset
+				})),
+				_coreData: action.data
 			}
+			
+		case SWITCH_TO_DAY: 
+		
+			return {
+				...state,
+				days: [{
+					temperature: getTemperature(action.day.dayOffset, state._coreData),
+					dayName: getDay(action.day.dayOffset, state._coreData),
+					dayOffset: action.day.dayOffset
+				}],
+				dayDetails: getDayDetails(action.day.dayName, state._coreData)
+			}
+			
 		default:
 			return state;
 	}
 }
-
-/**
- * Converts Kelvin temperature to Celsius
- * 
- * @param  {Number} kelvin: temperature in Kelvin
- * @return {Number} result: temperature in Celsius
- */
-const kelvinToCelsius = (kelvin) => (
-	kelvin - 273.15
-);
 
 /**
  * Returns temperature for a given day based on the data received from the openweathermap api.
@@ -55,7 +61,7 @@ const kelvinToCelsius = (kelvin) => (
  * @return {Number} result: temperature in Celsius
  */
 const getTemperature = (daysOffset, data) => (
-	Math.round(kelvinToCelsius(data.list[daysOffset * forecastsPerDay].main.temp))
+	Math.round(data.list[daysOffset * forecastsPerDay].main.temp)
 );
 
 /**
@@ -68,5 +74,24 @@ const getTemperature = (daysOffset, data) => (
 const getDay = (daysOffset, data) => (
 	daysOfWeek[new Date(data.list[daysOffset * forecastsPerDay].dt * 1000).getDay()]
 );
+
+/**
+ * Returns detailed info about a particular day. 
+ * 
+ * @param  {String} dayName: day of the week (Monday, Tuesday, etc)
+ * @param  {[type]} data: existing openweathermap api data
+ * @return {[type]} result: detailed info about the given day
+ */
+const getDayDetails = (dayName, data) => {
+	
+	const dayData = data.list.filter((item) => (
+		daysOfWeek[new Date(item.dt * 1000).getDay()] === dayName
+	));
+	
+	return dayData.map((item) => ({
+		time: item.dt_txt,
+		temperature: item.main.temp
+	}));
+}
 
 export default forecast;
